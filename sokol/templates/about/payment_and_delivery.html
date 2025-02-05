@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}
+Оплата И Доставка
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="page-heading">
+    <div class="banner-heading">
+        <img src="{% static 'img/headerbg.png' %}" alt="" class="img-reponsive">
+        <div class="heading-content text-center">
+            <div class="container container-42">
+                <h1 class="page-title white">Оплата И Доставка</h1>
+                <ul class="breadcrumb white">
+                    <li><a href="{% url 'index' %}">Главная</a></li>
+                    <li><a href="">Оплата И Доставка</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="faq-title text-center"></h2>
+    <div class="faq js-faq">
+        <div class="faq-content">
+            <a href="" onClick="return false;" class="faq-quest">Оплата</a>
+            <span class="plus js-plus-icon"></span>
+            <div class="faq-answer">
+                <p>В данный момент доступна оплата переводом по СБП или переводом с карты на карту.</p>
+                <p>Все товары поставляются только по предоплате.</p>
+            </div>
+        </div>
+        <div class="faq-content">
+            <a href="" onClick="return false;" class="faq-quest">Доставка</a>
+            <span class="plus js-plus-icon"></span>
+            <div class="faq-answer">
+                <p>Вы можете получить заказанные товары:</p>
+                <p>- в пункте выдачи СДЭК</p>
+                <p>- курьерской доставкой</p>
+                <p>- самовывозом из нашего офиса по адресу Санкт-Петербург, ул. Лидии Зверевой, д. 5к1</p>
+                <p>Время и стоимость доставки уточняются при общении с менеджером после оформления заявки на заказ.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

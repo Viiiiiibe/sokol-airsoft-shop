@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}
+Контакты
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="page-heading">
+    <div class="banner-heading">
+        <img src="{% static 'img/headerbg.png' %}" alt="" class="img-reponsive">
+        <div class="heading-content text-center">
+            <div class="container container-42">
+                <h1 class="page-title white">Контакты</h1>
+                <ul class="breadcrumb white">
+                    <li><a href="{% url 'index' %}">Главная</a></li>
+                    <li><a href="">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="contact about_simple">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4">
+                <h2 class="about-title">Наш Офис</h2>
+                <p class="address">Санкт-Петербург, ул. Лидии Зверевой, д. 5к1</p>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <h2 class="about-title">Почта</h2>
+                <p>sokolairsoftshop@outlook.com</p>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <h2 class="about-title">Мы в социальных сетях</h2>
+                <div class="contact-social">
+                    <a href="https://vk.com/sokol_delivery" title="vk">
+                        <i class="fa fa-vk"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

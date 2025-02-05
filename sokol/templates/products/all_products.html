@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}
+{% if request.GET.q%}
+Результаты поиска по запросу {{request.GET.q}}
+{% else %}
+Страйкбольные новинки: от приводов до расходников
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="page-heading">
+    <div class="banner-heading">
+        <img src="{% static 'img/headerbg.png' %}" alt="" class="img-reponsive">
+        <div class="heading-content text-center">
+            <div class="container container-42">
+                <h1 class="page-title white">
+                    {% if request.GET.q%}
+                    Поиск
+                    {% else %}
+                    Новинки
+                    {% endif %}
+                </h1>
+                <ul class="breadcrumb white">
+                    <li><a href="{% url 'index' %}">Главная</a></li>
+                    <li>
+                        <a href="">
+                            {% if request.GET.q%}
+                            Поиск
+                            {% else %}
+                            Новинки
+                            {% endif %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="product-standard product-grid">
+    <div class="container container-42">
+        <div class="tab-content">
+            <div id="all" class="tab-pane fade in active">
+                <div class="row">
+                    {% for product in page_obj %}
+                    <div class="col-md-15 col-sm-3 col-xs-6 product-item">
+                        <div class="product-images">
+                            <a href="{% url 'product_detail' product.pk %}" class="hover-images effect"><img
+                                    src="{{ product.image6.url }}"
+                                    alt="photo" class="img-reponsive"></a>
+                            {% if product.items_left < 1 %}
+                            <div class="ribbon-sale ver3"><span>отсутствует &nbsp &nbsp</span></div>
+                            {% endif %}
+                        </div>
+                        <div class="product-info-ver2">
+                            <h3 class="product-title"><a href="{% url 'product_detail' product.pk %}">{{product.name}}</a></h3>
+                            <div class="product-after-switch">
+                                <div class="product-price">{{ product.price |floatformat:2}} ₽</div>
+                                <div class="product-after-button">
+                                    {% if product.items_left < 1 %}
+                                    <a href="{% url 'product_detail' product.pk %}" class="addcart">ОТСУТСТВУЕТ</a>
+                                    {% else %}
+                                    <a href="{% url 'product_detail' product.pk %}" class="addcart">ПОСМОТРЕТЬ</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="pagination-container pagination-blog button-v text-center">
+                    {% include 'products/includes/paginator.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'products/includes/bestsellers.html' %}
+
+{% endblock %}

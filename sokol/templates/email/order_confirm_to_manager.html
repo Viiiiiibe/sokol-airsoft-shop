@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Заявка на заказ</title>
+</head>
+<body>
+Заказ №{{order.number}}<br>
+<br>
+Список товаров: {{order.ordered_products}}<br>
+Стоимость товаров: {{order.price |floatformat:2}} ₽<br>
+<br>
+Заказчик
+{% if order.customer is not None%}
+ зарегистрирован на сайте под ником {{order.customer.username}}
+{% else %}
+ не зарегистрирован на сайте
+{% endif %}<br>
+Фамилия заказчика: {{order.customer_last_name}}<br>
+Имя заказчика: {{order.customer_first_name}}<br>
+Отчество заказчика: {% if order.customer_patronymic is not None%}{{order.customer_patronymic}}{% endif %}<br>
+Почта заказчика: {{order.customer_email}}<br>
+Тлефон заказчика:{{order.customer_phone}}<br>
+VK заказчика:{% if order.customer_vk is not None%}{{order.customer_vk}}{% endif %}<br>
+Telegram заказчика:{% if order.customer_telegram is not None%}{{order.customer_telegram}}{% endif %}<br>
+<br>
+Выбранный способ доставки: {{order.delivery_method}}<br>
+Адрес: {{order.delivery_region}} обл., {{order.delivery_city}}
+{% if order.delivery_street is not None and order.delivery_street|length > 0%}, ул. {{order.delivery_street}}{% endif %}
+{% if order.delivery_house is not None and order.delivery_house|length > 0%}, д. {{order.delivery_house}}{% endif %}
+{% if order.delivery_flat is not None and order.delivery_flat|length > 0%}, кв. {{order.delivery_flat}}{% endif %}
+{% if order.delivery_entrance is not None and order.delivery_entrance|length > 0%}, подъезд {{order.delivery_entrance}}{% endif %}
+{% if order.delivery_floor is not None and order.delivery_floor|length > 0%}, этаж {{order.delivery_floor}}{% endif %}
+{% if order.delivery_intercom is not None and order.delivery_intercom|length > 0%}, домофон {{order.delivery_intercom}}{% endif %}
+<br>
+Комментарий к заказу:{% if order.customer_comment is not None%}{{order.customer_comment}}{% endif %}
+</body>
+</html>

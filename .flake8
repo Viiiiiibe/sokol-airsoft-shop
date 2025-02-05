@@ -1,0 +1,10 @@
+[flake8]
+max-line-length = 120
+extend-exclude =
+    venv/,
+    */migrations/
+per-file-ignores=
+    ./sokol/cart/apps.py:F401,
+    ./sokol/products/apps.py:F401,
+    ./sokol/sokol/settings_test.py:F403, F405
+

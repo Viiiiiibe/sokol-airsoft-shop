@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block title %}
+О Нас
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="page-heading">
+    <div class="banner-heading">
+        <img src="{% static 'img/headerbg.png' %}" alt="" class="img-reponsive">
+        <div class="heading-content text-center">
+            <div class="container container-42">
+                <h1 class="page-title white">О Нас</h1>
+                <ul class="breadcrumb white">
+                    <li><a href="{% url 'index' %}">Главная</a></li>
+                    <li><a href="">О Нас</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="our-teams">
+        <div class="text-center">
+            <h2 class="us-title text-center">
+                Всем антон! Меня зовут Привет, я являюсь основателем и владельцем этого магазина.
+            </h2>
+            <p class="us-desc">
+                Уже не один год команда SOKOL занимается тем, что помогет Вам достать ваши любимые игрушки, снарягу,
+                оборудование, а также практически любой тюн на них.<br>
+                У нас Вы можете заказать товары представленные в нашем магазине или обратиться за помощью с покупкой и
+                доставкой товаров из-за границы, если вдруг у нас не нашлось того, что вам надо.
+            </p>
+        </div>
+        <div class="owl-carousel owl-theme js-owl-team">
+            <div class="team-item">
+                <div class="team-img">
+                    <img src="{% static 'img/about/anton2.png' %}" alt="">
+                    <div class="box-center overlay-img ver4 social">
+                        <a href="https://vk.com/sokol_delivery" title="vk">
+                            <i class="fa fa-vk"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name"><a href="https://vk.com/sokol_delivery">Антон Соколов</a></h3>
+                    <p class="team-career">Главный по доставке</p>
+                </div>
+            </div>
+            <div class="team-item">
+                <div class="team-img">
+                    <img src="{% static 'img/about/anton1.png' %}" alt="">
+                    <div class="box-center overlay-img ver4 social">
+                        <a href="https://vk.com/sokol_delivery" title="vk">
+                            <i class="fa fa-vk"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name"><a href="https://vk.com/sokol_delivery">Антон Соколов</a></h3>
+                    <p class="team-career">Продажи</p>
+                </div>
+            </div>
+            <div class="team-item">
+                <div class="team-img">
+                    <img src="{% static 'img/about/igor.png' %}" alt="">
+                    <div class="box-center overlay-img ver4 social">
+                        <a href="https://vk.com/sokol_delivery" title="vk">
+                            <i class="fa fa-vk"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name"><a href="https://vk.com/sokol_delivery">Игорь Юрченко</a></h3>
+                    <p class="team-career">IT-отдел</p>
+                </div>
+            </div>
+            <div class="team-item">
+                <div class="team-img">
+                    <img src="{% static 'img/about/anton3.png' %}" alt="">
+                    <div class="box-center overlay-img ver4 social">
+                        <a href="https://vk.com/sokol_delivery" title="vk">
+                            <i class="fa fa-vk"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name"><a href="https://vk.com/sokol_delivery">Антон Соколов</a></h3>
+                    <p class="team-career">Креативный директор</p>
+                </div>
+            </div>
+            <div class="team-item">
+                <div class="team-img">
+                    <img src="{% static 'img/about/sanya.png' %}" alt="">
+                    <div class="box-center overlay-img ver4 social">
+                        <a href="https://vk.com/sokol_delivery" title="vk">
+                            <i class="fa fa-vk"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name"><a href="https://vk.com/sokol_delivery">Александра Данилова</a></h3>
+                    <p class="team-career">Начальник склада</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,249 @@
+{% extends 'base.html' %}
+{% block title %}
+Оформление Заявки на Доставку
+{% endblock %}
+
+{% block content %}
+{% load static %}
+{% load user_filters %}
+{% load mathfilters %}
+<div class="main-content space-padding-tb-70">
+    <div class="container">
+        <h3>Команда SOKOL оказывает услуги по помощи с покупкой и доставкой товаров из-за границы.</h3><br>
+        <h3>Вы можете заказать через нас товары с одного из сайтов, указанных ниже, или оставить ссылку на другой
+            сайт.</h3><br>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6" style="padding-bottom: 30px;">
+                    <a href="https://www.acetk.com" class="btn link-button create-account hover-black">acetech </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6" style="padding-bottom: 30px;">
+                    <a href="https://ctmtac.com" class="btn link-button create-account hover-black">ctm tac</a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6" style="padding-bottom: 30px;">
+                    <a href="https://monkcustoms.eu" class="btn link-button create-account hover-black">monk </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6" style="padding-bottom: 30px;">
+                    <a href="https://t238.net" class="btn link-button create-account hover-black">T238 </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6" style="padding-bottom: 30px;">
+                    <a href="https://www.wgcshop.com" class="btn link-button create-account hover-black">wgc </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6" style="padding-bottom: 30px;">
+                    <a href="https://eu.novritsch.com" class="btn link-button create-account hover-black">новрич </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6" style="padding-bottom: 30px;">
+                    <a href="https://www.rainbow8.com" class="btn link-button create-account hover-black">радуга </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6" style="padding-bottom: 30px;">
+                    <a href="https://www.skirmshop.nl/en/"
+                       class="btn link-button create-account hover-black">скирим </a>
+                </div>
+            </div>
+        </div>
+        <form name="checkout" method="post" class="checkout">
+            {% csrf_token %}
+            <div class="cart-box-container-ver2">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Заказ</h3>
+                        <div class="row form-customer order-container">
+                            <div class="form-group col-md-12 prod-url">
+                                <label class=" control-label">Ссылка на товар</label>
+                                <input type="text" name="description" class="form-control form-account" required>
+                            </div>
+                            <div class="form-group col-md-12 prod-comment">
+                                <label class=" control-label">Комментарий к сылке</label>
+                                <div class="row form-customer">
+                                    <div class="form-group col-md-12">
+                                        <textarea name="description" rows="5" class="form-control form-note"
+                                                  placeholder="Параметры товара, количество и тд."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="add_button  btn link-button create-account hover-black">Добавить
+                            Товар
+                        </button>
+                        <br><br>
+                        <h3>Личные Данные</h3>
+                        <div class="row form-customer">
+                            <div class="form-group col-md-12">
+                                <label class=" control-label">Фамилия <span
+                                        class="required text-danger">*</span></label>
+                                {{ form.customer_last_name |addclass:'form-control form-account'}}
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class=" control-label">Имя <span class="required text-danger">*</span></label>
+                                {{ form.customer_first_name |addclass:'form-control form-account'}}
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class=" control-label">Отчество</label>
+                                {{ form.customer_patronymic |addclass:'form-control form-account'}}
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class=" control-label">Email <span class="required text-danger">*</span></label>
+                                {{ form.customer_email |addclass:'form-control form-account'}}
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class=" control-label">Тлефон <span class="required text-danger">*</span></label>
+                                {{ form.customer_phone |addclass:'form-control form-account'}}
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class=" control-label">VK</label>
+                                {{ form.customer_vk |addclass:'form-control form-account'}}
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class=" control-label">Telegram</label>
+                                {{ form.customer_telegram |addclass:'form-control form-account'}}
+                            </div>
+                        </div>
+                        <h3>Способ Доставки</h3>
+                        <div class="row form-customer">
+                            <div class="form-check col-md-12">
+                                <label class=" ver2">
+                                    <input type="radio" name="shipping" value="Забрать в пункте выдачи СДЭК"
+                                           class="js-show-pickup-point form-radio-input" required/>
+                                    <span>Забрать в пункте выдачи СДЭК</span>
+                                </label><br>
+                                <label class=" ver2">
+                                    <input type="radio" name="shipping" value="Курьерская доставка СДЭК"
+                                           class="js-show-courier-delivery form-radio-input" required/>
+                                    <span>Курьерская доставка СДЭК</span>
+                                </label><br>
+                                <label class=" ver2">
+                                    <input type="radio" name="shipping" value="Самовывоз"
+                                           class="js-show-pickup-from-the-store form-radio-input" required/>
+                                    <span>Самовывоз</span>
+                                </label><br>
+                            </div>
+                            <div class="checkout-login col-md-12">
+                                <div class="form-login js-open-pickup-point">
+                                    <p>
+                                        Если не знаете адрес желаемого пункта выдачи, оставьте поля "Улица"
+                                        и "Дом" пустыми. Наш менеджер поможет выбрать удобный для Вас пункт
+                                        выдачи после оформления заказа.
+                                    </p>
+                                    <div class="form-group col-md-12">
+                                        <label class=" control-label">Область <span
+                                                class="required text-danger">*</span></label>
+                                        <input type="text" id="pickup-point-region" name="pickup-point-region"
+                                               class="form-control form-account">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label class=" control-label">Населенный пункт <span
+                                                class="required text-danger">*</span></label>
+                                        <input type="text" id="pickup-point-city" name="pickup-point-city"
+                                               class="form-control form-account">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label class=" control-label">Улица</label>
+                                        <input type="text" name="pickup-point-street" class="form-control form-account">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label class=" control-label">Дом</label>
+                                        <input type="text" name="pickup-point-house" class="form-control form-account">
+                                    </div>
+                                </div>
+                                <div class="form-login js-open-courier-delivery">
+                                    <div class="form-group col-md-12">
+                                        <label class=" control-label">Область <span
+                                                class="required text-danger">*</span></label>
+                                        <input type="text" id="courier-delivery-region" name="courier-delivery-region"
+                                               class="form-control form-account">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label class=" control-label">Населенный пункт <span
+                                                class="required text-danger">*</span></label>
+                                        <input type="text" id="courier-delivery-city" name="courier-delivery-city"
+                                               class="form-control form-account">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label class=" control-label">Улица <span class="required text-danger">*</span></label>
+                                        <input type="text" id="courier-delivery-street" name="courier-delivery-street"
+                                               class="form-control form-account">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label class=" control-label">Дом <span
+                                                class="required text-danger">*</span></label>
+                                        <input type="text" id="courier-delivery-house" name="courier-delivery-house"
+                                               class="form-control form-account">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label class=" control-label">Квартира</label>
+                                        <input type="text" name="courier-delivery-flat"
+                                               class="form-control form-account">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label class=" control-label">Подъезд</label>
+                                        <input type="text" name="courier-delivery-entrance"
+                                               class="form-control form-account">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label class=" control-label">Этаж</label>
+                                        <input type="text" name="courier-delivery-floor"
+                                               class="form-control form-account">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label class=" control-label">Домофон</label>
+                                        <input type="text" name="courier-delivery-intercom"
+                                               class="form-control form-account">
+                                    </div>
+                                </div>
+                                <div class="form-login js-open-pickup-from-the-store">
+                                    <p>
+                                        Вы можете забрать товар из нашего офиса по адресу<br>
+                                        г. Санкт-Петербург, ул. Лидии Зверевой, д. 5к1
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>Комментарий к заказу</h3>
+                        <div class="row form-customer">
+                            <div class="form-group col-md-12">
+                                <textarea name="comment" rows="5" class="form-control form-note"
+                                          placeholder="Примечания к вашему заказу, например, специальные примечания к доставке или предпочтительные способ и время связи с Вами для нашего менеджера"></textarea>
+                            </div>
+                        </div>
+                        <div class="text-price">
+                            <p class="no-checkbox"
+                               style="color: #a4a4a4; line-height: 18px; font-size: 14px; margin-bottom: 20px; margin-top: 20px;">
+                                После оформления заявки наш менеджер свяжется с вами для уточнения
+                                деталей по оплате и доставке товара.<br><br>
+                                Время и стоимость доставки уточняются при общении с менеджером
+                            </p>
+                        </div>
+                        <button type="submit" class="btn link-button hover-white btn-checkout">Оформить Заявку</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    let container = document.querySelector('.order-container');
+    let add_button = document.querySelector('.add_button');
+    let i = 0;
+
+    add_button.addEventListener('click', function() {
+      i++;
+      let newprod = `<div class="form-group col-md-12 prod-url">
+                                        <label class=" control-label">Ссылка на товар</label>
+                                        <input type="text"  name="description" class="form-control form-account">
+                                    </div>
+                                    <div class="form-group col-md-12 prod-comment">
+                                        <label class=" control-label">Комментарий к сылке</label>
+                                        <div class="row form-customer">
+                                            <div class="form-group col-md-12">
+                                                <textarea name="description" rows="5" class="form-control form-note" placeholder="Параметры товара, количество и тд."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>`;
+
+
+      document.querySelector('.order-container').insertAdjacentHTML("beforeend", newprod)
+
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+Заказы
+{% endblock %}
+
+{% block content %}
+{% load static %}
+{% load mptt_tags static %}
+
+<div class="  orders-page space-padding-tb-70">
+    <div class="container container-40">
+        <div class="row">
+            <div class="title-page">
+                <h3>Заказы</h3>
+            </div>
+            {% for order in orders %}
+            <div class="col-xs-12 col-sm-6 col-md-6" style="padding-bottom: 30px;">
+                <div class="banner-img">
+                    <a class="" href="{% url 'users:order_detail' order.number %}"><img src="{% static 'img/order_banner.png' %}" alt="photo" class="img-reponsive"></a>
+                    <div class="banner-content">
+                        <h3 class="banner-title">№ {{order.number}}</h3>
+                        <p>{{order.get_status_display}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="pagination-container pagination-blog button-v text-center">
+    <nav>
+        <ul class="pagination">
+        </ul>
+    </nav>
+</div>
+{% endblock %}
